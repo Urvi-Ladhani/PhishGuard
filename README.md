@@ -53,12 +53,3 @@ PhishGuard/
    ```powershell
    python -m pytest
    ```
-
-## Completed Workflow Steps
-- [x] **Step 1:** Workspace audit, project skeleton, and `src/config.py`.
-- [x] **Step 2:** Problem definition, use case, cost matrix, and target mapping.
-- [x] **Step 3:** Data acquisition, source provenance (PhiUSIIL CC BY 4.0), and 56-feature taxonomy.
-- [x] **Step 4:** Quality audit (0 nulls, 0 corrupt rows, 11 duplicate URL pairs verified consistent, modular `data_validation.py` + tests).
-- [x] **Step 5:** Preprocessing and leakage audit (`FILENAME` target proxy flagged & excluded, `IsHTTPS` verified, IQR outlier zero-drop policy, leak-free `preprocessing.py` + tests).
-- [x] **Step 6:** Class distribution analysis (57.19% vs 42.81%, ratio 1.336:1, zero synthetic resampling policy, CV-fold weighting rule).
-- [ ] **Step 7:** Exploratory Data Analysis (EDA) — Next Action.
