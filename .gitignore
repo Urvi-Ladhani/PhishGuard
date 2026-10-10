@@ -1,0 +1,23 @@
+# Python bytecode and cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Saved models and heavy artifacts (keep git clean)
+models/*.joblib
+!models/.gitkeep
+
+# Data directory (keep raw dataset in root or data/raw if needed, ignore large artifacts)
+data/processed/*.csv
+
+# Operating system / IDE
+.DS_Store
+.vscode/
+.idea/
+*.log

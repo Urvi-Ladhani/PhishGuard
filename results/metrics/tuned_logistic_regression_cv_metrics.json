@@ -1,0 +1,30 @@
+{
+  "model_name": "tuned_logistic_regression",
+  "best_params": {
+    "model__C": 100.0,
+    "model__class_weight": "balanced"
+  },
+  "cv_folds": 5,
+  "metrics": {
+    "f1": {
+      "mean": 0.9968238190647754,
+      "std": 0.0007276998969142274
+    },
+    "accuracy": {
+      "mean": 0.9972906158979036,
+      "std": 0.0006183795752037923
+    },
+    "precision": {
+      "mean": 0.9999021047479196,
+      "std": 0.00019579050416056453
+    },
+    "recall": {
+      "mean": 0.993765648484584,
+      "std": 0.0014907454893569813
+    },
+    "roc_auc": {
+      "mean": 0.9968463943697966,
+      "std": 0.000727299222015327
+    }
+  }
+}

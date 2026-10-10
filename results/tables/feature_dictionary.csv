@@ -1,0 +1,57 @@
+Feature_Name,Feature_Group,Data_Type,URL_Only_Available,Target_Leakage_Risk,Decision,Description
+FILENAME,Identifier,object,No,High (Source Proxy),Excluded,Dataset sample text file ID. Excluded to prevent target leakage.
+URL,Raw String Text,object,Yes (URL/Domain/TLD),None,Excluded from matrix (Used for extraction),Raw text column for URL. Processed deterministically by URL extractor.
+URLLength,FS-URL (Deployable),int64,Yes,None,Retained for Model Training,Deterministic URL structural/lexical attribute extracted from URL string.
+Domain,Raw String Text,object,Yes (URL/Domain/TLD),None,Excluded from matrix (Used for extraction),Raw text column for Domain. Processed deterministically by URL extractor.
+DomainLength,FS-URL (Deployable),int64,Yes,None,Retained for Model Training,Deterministic URL structural/lexical attribute extracted from URL string.
+IsDomainIP,FS-URL (Deployable),int64,Yes,None,Retained for Model Training,Deterministic URL structural/lexical attribute extracted from URL string.
+TLD,Raw String Text,object,Yes (URL/Domain/TLD),None,Excluded from matrix (Used for extraction),Raw text column for TLD. Processed deterministically by URL extractor.
+URLSimilarityIndex,URL Statistical Reference,float64,No (Requires corpus probability lookup),None,Excluded (FS-REF Group),Statistical corpus distribution probability.
+CharContinuationRate,URL Statistical Reference,float64,No (Requires corpus probability lookup),None,Excluded (FS-REF Group),Statistical corpus distribution probability.
+TLDLegitimateProb,URL Statistical Reference,float64,No (Requires corpus probability lookup),None,Excluded (FS-REF Group),Statistical corpus distribution probability.
+URLCharProb,URL Statistical Reference,float64,No (Requires corpus probability lookup),None,Excluded (FS-REF Group),Statistical corpus distribution probability.
+TLDLength,FS-URL (Deployable),int64,Yes,None,Retained for Model Training,Deterministic URL structural/lexical attribute extracted from URL string.
+NoOfSubDomain,FS-URL (Deployable),int64,Yes,None,Retained for Model Training,Deterministic URL structural/lexical attribute extracted from URL string.
+HasObfuscation,FS-URL (Deployable),int64,Yes,None,Retained for Model Training,Deterministic URL structural/lexical attribute extracted from URL string.
+NoOfObfuscatedChar,FS-URL (Deployable),int64,Yes,None,Retained for Model Training,Deterministic URL structural/lexical attribute extracted from URL string.
+ObfuscationRatio,FS-URL (Deployable),float64,Yes,None,Retained for Model Training,Deterministic URL structural/lexical attribute extracted from URL string.
+NoOfLettersInURL,FS-URL (Deployable),int64,Yes,None,Retained for Model Training,Deterministic URL structural/lexical attribute extracted from URL string.
+LetterRatioInURL,FS-URL (Deployable),float64,Yes,None,Retained for Model Training,Deterministic URL structural/lexical attribute extracted from URL string.
+NoOfDegitsInURL,FS-URL (Deployable),int64,Yes,None,Retained for Model Training,Deterministic URL structural/lexical attribute extracted from URL string.
+DegitRatioInURL,FS-URL (Deployable),float64,Yes,None,Retained for Model Training,Deterministic URL structural/lexical attribute extracted from URL string.
+NoOfEqualsInURL,FS-URL (Deployable),int64,Yes,None,Retained for Model Training,Deterministic URL structural/lexical attribute extracted from URL string.
+NoOfQMarkInURL,FS-URL (Deployable),int64,Yes,None,Retained for Model Training,Deterministic URL structural/lexical attribute extracted from URL string.
+NoOfAmpersandInURL,FS-URL (Deployable),int64,Yes,None,Retained for Model Training,Deterministic URL structural/lexical attribute extracted from URL string.
+NoOfOtherSpecialCharsInURL,FS-URL (Deployable),int64,Yes,None,Retained for Model Training,Deterministic URL structural/lexical attribute extracted from URL string.
+SpacialCharRatioInURL,FS-URL (Deployable),float64,Yes,None,Retained for Model Training,Deterministic URL structural/lexical attribute extracted from URL string.
+IsHTTPS,FS-URL (Deployable),int64,Yes,None,Retained for Model Training,Deterministic URL structural/lexical attribute extracted from URL string.
+LineOfCode,FS-REF (Page/DOM Content),int64,No (Requires live web fetching),None,Excluded (FS-REF Group),Web page HTML/DOM attribute. Not available from URL string alone.
+LargestLineLength,FS-REF (Page/DOM Content),int64,No (Requires live web fetching),None,Excluded (FS-REF Group),Web page HTML/DOM attribute. Not available from URL string alone.
+HasTitle,FS-REF (Page/DOM Content),int64,No (Requires live web fetching),None,Excluded (FS-REF Group),Web page HTML/DOM attribute. Not available from URL string alone.
+Title,Raw String Text,object,No,None,Excluded from matrix (Used for extraction),Raw text column for Title. Processed deterministically by URL extractor.
+DomainTitleMatchScore,FS-REF (Page/DOM Content),float64,No (Requires live web fetching),None,Excluded (FS-REF Group),Web page HTML/DOM attribute. Not available from URL string alone.
+URLTitleMatchScore,FS-REF (Page/DOM Content),float64,No (Requires live web fetching),None,Excluded (FS-REF Group),Web page HTML/DOM attribute. Not available from URL string alone.
+HasFavicon,FS-REF (Page/DOM Content),int64,No (Requires live web fetching),None,Excluded (FS-REF Group),Web page HTML/DOM attribute. Not available from URL string alone.
+Robots,FS-REF (Page/DOM Content),int64,No (Requires live web fetching),None,Excluded (FS-REF Group),Web page HTML/DOM attribute. Not available from URL string alone.
+IsResponsive,FS-REF (Page/DOM Content),int64,No (Requires live web fetching),None,Excluded (FS-REF Group),Web page HTML/DOM attribute. Not available from URL string alone.
+NoOfURLRedirect,FS-REF (Page/DOM Content),int64,No (Requires live web fetching),None,Excluded (FS-REF Group),Web page HTML/DOM attribute. Not available from URL string alone.
+NoOfSelfRedirect,FS-REF (Page/DOM Content),int64,No (Requires live web fetching),None,Excluded (FS-REF Group),Web page HTML/DOM attribute. Not available from URL string alone.
+HasDescription,FS-REF (Page/DOM Content),int64,No (Requires live web fetching),None,Excluded (FS-REF Group),Web page HTML/DOM attribute. Not available from URL string alone.
+NoOfPopup,FS-REF (Page/DOM Content),int64,No (Requires live web fetching),None,Excluded (FS-REF Group),Web page HTML/DOM attribute. Not available from URL string alone.
+NoOfiFrame,FS-REF (Page/DOM Content),int64,No (Requires live web fetching),None,Excluded (FS-REF Group),Web page HTML/DOM attribute. Not available from URL string alone.
+HasExternalFormSubmit,FS-REF (Page/DOM Content),int64,No (Requires live web fetching),None,Excluded (FS-REF Group),Web page HTML/DOM attribute. Not available from URL string alone.
+HasSocialNet,FS-REF (Page/DOM Content),int64,No (Requires live web fetching),None,Excluded (FS-REF Group),Web page HTML/DOM attribute. Not available from URL string alone.
+HasSubmitButton,FS-REF (Page/DOM Content),int64,No (Requires live web fetching),None,Excluded (FS-REF Group),Web page HTML/DOM attribute. Not available from URL string alone.
+HasHiddenFields,FS-REF (Page/DOM Content),int64,No (Requires live web fetching),None,Excluded (FS-REF Group),Web page HTML/DOM attribute. Not available from URL string alone.
+HasPasswordField,FS-REF (Page/DOM Content),int64,No (Requires live web fetching),None,Excluded (FS-REF Group),Web page HTML/DOM attribute. Not available from URL string alone.
+Bank,FS-REF (Page/DOM Content),int64,No (Requires live web fetching),None,Excluded (FS-REF Group),Web page HTML/DOM attribute. Not available from URL string alone.
+Pay,FS-REF (Page/DOM Content),int64,No (Requires live web fetching),None,Excluded (FS-REF Group),Web page HTML/DOM attribute. Not available from URL string alone.
+Crypto,FS-REF (Page/DOM Content),int64,No (Requires live web fetching),None,Excluded (FS-REF Group),Web page HTML/DOM attribute. Not available from URL string alone.
+HasCopyrightInfo,FS-REF (Page/DOM Content),int64,No (Requires live web fetching),None,Excluded (FS-REF Group),Web page HTML/DOM attribute. Not available from URL string alone.
+NoOfImage,FS-REF (Page/DOM Content),int64,No (Requires live web fetching),None,Excluded (FS-REF Group),Web page HTML/DOM attribute. Not available from URL string alone.
+NoOfCSS,FS-REF (Page/DOM Content),int64,No (Requires live web fetching),None,Excluded (FS-REF Group),Web page HTML/DOM attribute. Not available from URL string alone.
+NoOfJS,FS-REF (Page/DOM Content),int64,No (Requires live web fetching),None,Excluded (FS-REF Group),Web page HTML/DOM attribute. Not available from URL string alone.
+NoOfSelfRef,FS-REF (Page/DOM Content),int64,No (Requires live web fetching),None,Excluded (FS-REF Group),Web page HTML/DOM attribute. Not available from URL string alone.
+NoOfEmptyRef,FS-REF (Page/DOM Content),int64,No (Requires live web fetching),None,Excluded (FS-REF Group),Web page HTML/DOM attribute. Not available from URL string alone.
+NoOfExternalRef,FS-REF (Page/DOM Content),int64,No (Requires live web fetching),None,Excluded (FS-REF Group),Web page HTML/DOM attribute. Not available from URL string alone.
+label,Target,int64,No,Target Column,Derived to is_phishing,"Raw dataset target (0=Phishing, 1=Legitimate)."

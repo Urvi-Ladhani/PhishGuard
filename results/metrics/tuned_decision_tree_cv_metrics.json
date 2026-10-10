@@ -1,0 +1,33 @@
+{
+  "model_name": "tuned_decision_tree",
+  "best_params": {
+    "model__class_weight": "balanced",
+    "model__criterion": "entropy",
+    "model__max_depth": 15,
+    "model__min_samples_leaf": 1,
+    "model__min_samples_split": 2
+  },
+  "cv_folds": 5,
+  "metrics": {
+    "f1": {
+      "mean": 0.9959967287840821,
+      "std": 0.0007396603271167932
+    },
+    "accuracy": {
+      "mean": 0.9965820481045403,
+      "std": 0.0006266670030462522
+    },
+    "precision": {
+      "mean": 0.9981432314682351,
+      "std": 0.0007778592755500706
+    },
+    "recall": {
+      "mean": 0.9938632091825628,
+      "std": 0.0020574325586797514
+    },
+    "roc_auc": {
+      "mean": 0.9962394370138679,
+      "std": 0.0007995146037576744
+    }
+  }
+}

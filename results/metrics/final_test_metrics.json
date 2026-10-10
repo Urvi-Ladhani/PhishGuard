@@ -1,0 +1,45 @@
+{
+  "champion_model": "Tuned Logistic Regression",
+  "test_samples": 5998,
+  "logistic_regression_test_metrics": {
+    "accuracy": 0.9963321107035679,
+    "precision": 1.0,
+    "recall": 0.9914263445050663,
+    "f1": 0.9956947162426615,
+    "roc_auc": 0.998837394419039
+  },
+  "decision_tree_test_metrics": {
+    "accuracy": 0.9958319439813271,
+    "precision": 0.9964830011723329,
+    "recall": 0.9937646141855028,
+    "f1": 0.9951219512195122,
+    "roc_auc": 0.9949779776601677
+  },
+  "classification_report_lr": {
+    "0": {
+      "precision": 0.9936305732484076,
+      "recall": 1.0,
+      "f1-score": 0.9968051118210862,
+      "support": 3432.0
+    },
+    "1": {
+      "precision": 1.0,
+      "recall": 0.9914263445050663,
+      "f1-score": 0.9956947162426615,
+      "support": 2566.0
+    },
+    "accuracy": 0.9963321107035679,
+    "macro avg": {
+      "precision": 0.9968152866242038,
+      "recall": 0.9957131722525332,
+      "f1-score": 0.9962499140318739,
+      "support": 5998.0
+    },
+    "weighted avg": {
+      "precision": 0.9963554730557744,
+      "recall": 0.9963321107035679,
+      "f1-score": 0.9963300742995393,
+      "support": 5998.0
+    }
+  }
+}

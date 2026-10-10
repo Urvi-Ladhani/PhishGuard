@@ -1,0 +1,3 @@
+"""
+PhishGuard core package initialization.
+"""
