@@ -1,0 +1,73 @@
+{
+    "model_name": "PhishGuard Regularized Logistic Regression",
+    "model_role": "Champion Model",
+    "algorithm": "sklearn.linear_model.LogisticRegression",
+    "hyperparameters": {
+        "C": 0.01,
+        "class_weight": null,
+        "solver": "lbfgs",
+        "max_iter": 1000,
+        "random_state": 42
+    },
+    "decision_threshold": 0.65,
+    "scaling": "sklearn.preprocessing.StandardScaler on numeric, passthrough on binary",
+    "feature_order": [
+        "URLLength",
+        "DomainLength",
+        "IsDomainIP",
+        "TLDLength",
+        "NoOfSubDomain",
+        "HasObfuscation",
+        "NoOfObfuscatedChar",
+        "ObfuscationRatio",
+        "NoOfLettersInURL",
+        "LetterRatioInURL",
+        "NoOfDegitsInURL",
+        "DegitRatioInURL",
+        "NoOfEqualsInURL",
+        "NoOfQMarkInURL",
+        "NoOfAmpersandInURL",
+        "NoOfOtherSpecialCharsInURL",
+        "SpacialCharRatioInURL",
+        "IsHTTPS"
+    ],
+    "feature_coefficients": {
+        "URLLength": 0.13893,
+        "DomainLength": -0.22449,
+        "TLDLength": 0.10717,
+        "NoOfSubDomain": -0.72287,
+        "NoOfObfuscatedChar": 0.0016,
+        "ObfuscationRatio": 0.01303,
+        "NoOfLettersInURL": 0.62142,
+        "LetterRatioInURL": 1.3625,
+        "NoOfDegitsInURL": 0.21213,
+        "DegitRatioInURL": 1.5634,
+        "NoOfEqualsInURL": 0.01042,
+        "NoOfQMarkInURL": 0.08469,
+        "NoOfAmpersandInURL": 0.00238,
+        "NoOfOtherSpecialCharsInURL": 0.51932,
+        "SpacialCharRatioInURL": 1.77089,
+        "IsDomainIP": 0.00177,
+        "HasObfuscation": 0.00242,
+        "IsHTTPS": -4.64004
+    },
+    "model_intercept": 3.73016,
+    "test_performance": {
+        "test_samples": 5998,
+        "accuracy": 0.9783,
+        "precision": 0.9988,
+        "recall": 0.9505,
+        "f1_score": 0.974,
+        "roc_auc": 0.9974,
+        "true_negatives": 3429,
+        "false_positives": 3,
+        "false_negatives": 127,
+        "true_positives": 2439
+    },
+    "reproducibility": {
+        "random_state": 42,
+        "train_test_split": "80/20 stratified",
+        "train_samples": 23991
+    },
+    "created_at": "2026-10-11T14:32:30.517263"
+}

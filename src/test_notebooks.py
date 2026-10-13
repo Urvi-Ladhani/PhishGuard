@@ -6,6 +6,10 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 notebooks_to_test = [
+    "notebooks/01_problem_data_audit.ipynb",
+    "notebooks/02_eda.ipynb",
+    "notebooks/03_feature_engineering.ipynb",
+    "notebooks/04_data_split_and_baseline.ipynb",
     "notebooks/05_logistic_regression.ipynb",
     "notebooks/06_decision_tree.ipynb",
     "notebooks/07_model_comparison_and_test_eval.ipynb"

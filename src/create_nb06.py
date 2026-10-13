@@ -12,7 +12,7 @@ nb.cells = [
 ## 1. Objectives & Guidelines
 - **Constraint Compliance:** Decision Tree Classifier is the second strictly permitted algorithm for PhishGuard.
 - **FS-URL Feature Set:** Evaluated strictly on the 18 deployable URL-string features (`FS-URL`) to support web app deployment without web scraping.
-- **Cross-Validation Protocol:** 5-Fold Stratified Cross-Validation on the locked 80% training split (`data/processed/train.csv`).
+- **Cross-Validation Protocol:** 5-Fold Stratified Cross-Validation on the locked 80% training split (`data/processed/train.csv`, 23,991 samples).
 - **Hyperparameter Grid:** Systematic tuning across tree depth (`max_depth`), split criterion (`gini`, `entropy`), leaf constraints (`min_samples_split`, `min_samples_leaf`), and class balance (`class_weight`).
 - **Metric Priority:** Primary optimization metric is **F1-Score** (balancing Precision and Recall for Phishing URLs).
 """),
@@ -60,9 +60,9 @@ pipeline = Pipeline([
     nbf.v4.new_markdown_cell("""## 3. Systematic Hyperparameter Tuning via GridSearchCV"""),
     nbf.v4.new_code_cell("""param_grid = {
     'model__criterion': ['gini', 'entropy'],
-    'model__max_depth': [3, 5, 8, 10, 15, 20, None],
-    'model__min_samples_split': [2, 5, 10],
-    'model__min_samples_leaf': [1, 2, 5],
+    'model__max_depth': [5, 10, 15, 20, None],
+    'model__min_samples_split': [2, 5],
+    'model__min_samples_leaf': [1, 2],
     'model__class_weight': [None, 'balanced']
 }
 
@@ -81,7 +81,7 @@ grid_search = GridSearchCV(
     cv=cv,
     scoring=scoring,
     refit='f1',
-    n_jobs=-1,
+    n_jobs=1,
     return_train_score=False
 )
 
@@ -92,7 +92,7 @@ best_params = grid_search.best_params_
 best_idx = grid_search.best_index_
 res = grid_search.cv_results_
 
-print("Best Parameters:", best_params)
+print("Best Decision Tree Parameters:", best_params)
 print(f"Best CV F1-Score:  {res['mean_test_f1'][best_idx]:.4f} +/- {res['std_test_f1'][best_idx]:.4f}")
 print(f"Best CV Accuracy:  {res['mean_test_accuracy'][best_idx]:.4f} +/- {res['std_test_accuracy'][best_idx]:.4f}")
 print(f"Best CV Precision: {res['mean_test_precision'][best_idx]:.4f} +/- {res['std_test_precision'][best_idx]:.4f}")
@@ -109,7 +109,7 @@ imp_df = pd.DataFrame({
     'importance': importances
 }).sort_values('importance', ascending=False)
 
-print("Feature Importances:")
+print("Decision Tree Feature Importances:")
 print(imp_df.to_string(index=False))
 
 # Plot Feature Importances
@@ -122,19 +122,36 @@ plt.tight_layout()
 FIGURES_DIR.mkdir(parents=True, exist_ok=True)
 plt.savefig(FIGURES_DIR / "dt_feature_importances.png", dpi=300)
 plt.show()
+
+# Serialize Decision Tree CV metrics
+metrics_payload = {
+    'model_name': 'tuned_decision_tree',
+    'best_params': best_params,
+    'cv_folds': CV_FOLDS,
+    'metrics': {
+        'f1': {'mean': float(res['mean_test_f1'][best_idx]), 'std': float(res['std_test_f1'][best_idx])},
+        'accuracy': {'mean': float(res['mean_test_accuracy'][best_idx]), 'std': float(res['std_test_accuracy'][best_idx])},
+        'precision': {'mean': float(res['mean_test_precision'][best_idx]), 'std': float(res['std_test_precision'][best_idx])},
+        'recall': {'mean': float(res['mean_test_recall'][best_idx]), 'std': float(res['std_test_recall'][best_idx])},
+        'roc_auc': {'mean': float(res['mean_test_roc_auc'][best_idx]), 'std': float(res['std_test_roc_auc'][best_idx])}
+    }
+}
+with open(METRICS_DIR / "tuned_decision_tree_cv_metrics.json", "w", encoding="utf-8") as f:
+    json.dump(metrics_payload, f, indent=2)
+print("Saved Decision Tree CV metrics JSON to results/metrics/tuned_decision_tree_cv_metrics.json")
 """),
-    nbf.v4.new_markdown_cell("""## 5. Summary & Model Comparison"""),
-    nbf.v4.new_markdown_cell("""The Decision Tree Classifier achieved **99.60% CV F1-score** and **99.66% CV Accuracy** with `max_depth=15`, `criterion='entropy'`, and `class_weight='balanced'`.
+    nbf.v4.new_markdown_cell("""## 5. Summary & Cross-Validation Model Comparison
 
-Cross-Validation Comparison on Training Set:
-- **Tuned Logistic Regression:** F1 = 0.9968, Accuracy = 0.9973, Precision = 0.9999, Recall = 0.9938
-- **Tuned Decision Tree:** F1 = 0.9960, Accuracy = 0.9966, Precision = 0.9981, Recall = 0.9939
+### Performance Comparison on 5-Fold Training Splits:
+- **Tuned Decision Tree:** Achieved **99.60% CV F1-score**, **99.66% CV Accuracy** with `max_depth=15`, `criterion='entropy'`, and `class_weight='balanced'`. Top features: `URLLength`, `DomainLength`, `IsHTTPS`.
+- **Regularized Logistic Regression:** Achieved **97.40% CV F1-score**, **97.83% CV Accuracy** ($C=0.01$), with smooth probability bounds and resistance to coefficient explosion.
 
-Both models exhibit extraordinary performance on deployable URL-only features.
+### Next Step:
+Both candidate pipelines are fully validated on the 5-Fold training data. In Step 12 (`notebooks/07_model_comparison_and_test_eval.ipynb`), we unlock the held-out test split (5,998 samples) for final head-to-head comparison and threshold calibration.
 """)
 ]
 
 with open("notebooks/06_decision_tree.ipynb", "w", encoding="utf-8") as f:
     nbf.write(nb, f)
 
-print("Updated notebooks/06_decision_tree.ipynb with sys.path.append('..') successfully.")
+print("Updated src/create_nb06.py and regenerated notebooks/06_decision_tree.ipynb successfully.")

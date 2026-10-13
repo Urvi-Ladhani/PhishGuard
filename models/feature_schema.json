@@ -1,0 +1,64 @@
+{
+    "version": "2.0",
+    "description": "Deterministic URL-only feature schema (FS-URL) with calibrated threshold.",
+    "feature_count": 18,
+    "feature_order": [
+        "URLLength",
+        "DomainLength",
+        "IsDomainIP",
+        "TLDLength",
+        "NoOfSubDomain",
+        "HasObfuscation",
+        "NoOfObfuscatedChar",
+        "ObfuscationRatio",
+        "NoOfLettersInURL",
+        "LetterRatioInURL",
+        "NoOfDegitsInURL",
+        "DegitRatioInURL",
+        "NoOfEqualsInURL",
+        "NoOfQMarkInURL",
+        "NoOfAmpersandInURL",
+        "NoOfOtherSpecialCharsInURL",
+        "SpacialCharRatioInURL",
+        "IsHTTPS"
+    ],
+    "numeric_features": [
+        "URLLength",
+        "DomainLength",
+        "TLDLength",
+        "NoOfSubDomain",
+        "NoOfObfuscatedChar",
+        "ObfuscationRatio",
+        "NoOfLettersInURL",
+        "LetterRatioInURL",
+        "NoOfDegitsInURL",
+        "DegitRatioInURL",
+        "NoOfEqualsInURL",
+        "NoOfQMarkInURL",
+        "NoOfAmpersandInURL",
+        "NoOfOtherSpecialCharsInURL",
+        "SpacialCharRatioInURL"
+    ],
+    "binary_features": [
+        "IsDomainIP",
+        "HasObfuscation",
+        "IsHTTPS"
+    ],
+    "target_column": "is_phishing",
+    "target_mapping": {
+        "0": "Legitimate",
+        "1": "Phishing"
+    },
+    "decision_threshold": 0.65,
+    "regularization_c": 0.01,
+    "positive_class": 1,
+    "positive_label": "Phishing",
+    "negative_class": 0,
+    "negative_label": "Legitimate",
+    "extraction_rules": {
+        "web_scraping": false,
+        "network_requests": false,
+        "live_dns": false,
+        "deterministic_parsing_only": true
+    }
+}

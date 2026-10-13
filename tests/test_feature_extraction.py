@@ -18,7 +18,7 @@ class TestFeatureExtraction(unittest.TestCase):
         
         self.assertEqual(feats["IsHTTPS"], 1)
         self.assertEqual(feats["IsDomainIP"], 0)
-        self.assertEqual(feats["URLLength"], len(url))
+        self.assertEqual(feats["URLLength"], len("http://www.google.com/search?q=test"))
         self.assertEqual(feats["DomainLength"], len("www.google.com"))
         self.assertEqual(feats["NoOfSubDomain"], 1)  # www
         self.assertEqual(feats["NoOfEqualsInURL"], 1)

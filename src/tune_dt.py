@@ -57,7 +57,7 @@ def main():
         cv=cv,
         scoring=scoring,
         refit='f1',
-        n_jobs=-1,
+        n_jobs=1,
         return_train_score=False
     )
 

@@ -41,10 +41,12 @@ def main():
 
     preprocessor = get_feature_preprocessor(FS_URL_NUMERIC, FS_URL_BINARY)
 
-    # 1. Champion Model: Tuned Logistic Regression
+    DECISION_THRESHOLD = 0.65
+
+    # 1. Champion Model: Regularized Logistic Regression (C=0.01, threshold=0.65)
     lr_pipeline = Pipeline([
         ('preprocessor', preprocessor),
-        ('model', LogisticRegression(random_state=RANDOM_STATE, max_iter=1000, C=100.0, class_weight='balanced', solver='lbfgs'))
+        ('model', LogisticRegression(random_state=RANDOM_STATE, max_iter=1000, C=0.01, class_weight=None, solver='lbfgs'))
     ])
     lr_pipeline.fit(X_train, y_train)
 
@@ -56,11 +58,11 @@ def main():
     dt_pipeline.fit(X_train, y_train)
 
     # Predict on test set
-    y_pred_lr = lr_pipeline.predict(X_test)
     y_prob_lr = lr_pipeline.predict_proba(X_test)[:, 1]
+    y_pred_lr = (y_prob_lr >= DECISION_THRESHOLD).astype(int)
 
-    y_pred_dt = dt_pipeline.predict(X_test)
     y_prob_dt = dt_pipeline.predict_proba(X_test)[:, 1]
+    y_pred_dt = dt_pipeline.predict(X_test)
 
     # Metrics for LR
     lr_metrics = {
@@ -68,7 +70,9 @@ def main():
         'precision': float(precision_score(y_test, y_pred_lr)),
         'recall': float(recall_score(y_test, y_pred_lr)),
         'f1': float(f1_score(y_test, y_pred_lr)),
-        'roc_auc': float(roc_auc_score(y_test, y_prob_lr))
+        'roc_auc': float(roc_auc_score(y_test, y_prob_lr)),
+        'threshold': DECISION_THRESHOLD,
+        'regularization_c': 0.01
     }
 
     # Metrics for DT
@@ -81,7 +85,7 @@ def main():
     }
 
     print("\n=== FINAL HELD-OUT TEST SET PERFORMANCE ===")
-    print("1. Champion Model: Tuned Logistic Regression")
+    print("1. Champion Model: Regularized Logistic Regression (C=0.01, Threshold=0.65)")
     print(f"   Accuracy:  {lr_metrics['accuracy']:.4f}")
     print(f"   Precision: {lr_metrics['precision']:.4f}")
     print(f"   Recall:    {lr_metrics['recall']:.4f}")
