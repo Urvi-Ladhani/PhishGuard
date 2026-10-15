@@ -6,13 +6,13 @@ import unittest
 import pandas as pd
 import numpy as np
 from src.data_validation import validate_raw_schema, audit_data_quality, add_derived_target
-from src.config import RAW_DATA_PATH, RAW_TARGET_COL, DERIVED_TARGET_COL
+from src.config import RAW_DATA_PATH, RAW_DATA_ENCODING, RAW_TARGET_COL, DERIVED_TARGET_COL
 
 
 class TestDataValidation(unittest.TestCase):
 
     def setUp(self):
-        self.raw_df = pd.read_csv(RAW_DATA_PATH)
+        self.raw_df = pd.read_csv(RAW_DATA_PATH, encoding=RAW_DATA_ENCODING)
 
     def test_validate_raw_schema(self):
         valid, msg = validate_raw_schema(self.raw_df)

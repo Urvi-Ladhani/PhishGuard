@@ -9,7 +9,7 @@ import numpy as np
 from typing import Tuple
 from sklearn.model_selection import train_test_split
 from src.config import (
-    RAW_DATA_PATH, RAW_TARGET_COL, DERIVED_TARGET_COL,
+    RAW_DATA_PATH, RAW_DATA_ENCODING, RAW_TARGET_COL, DERIVED_TARGET_COL,
     PROCESSED_DATA_DIR, RANDOM_STATE, TEST_SIZE
 )
 from src.feature_extraction import FS_URL_FEATURES
@@ -25,7 +25,7 @@ def prepare_and_split_data(
     
     Locks the test set into data/processed/test.csv.
     """
-    df_raw = pd.read_csv(RAW_DATA_PATH)
+    df_raw = pd.read_csv(RAW_DATA_PATH, encoding=RAW_DATA_ENCODING)
     df_target = add_derived_target(df_raw)
     
     # Deduplicate on URL to prevent split leakage
